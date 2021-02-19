@@ -318,6 +318,7 @@ Active Standby Elector主要负责完成自动的主备选举，内部封装了Z
 |JournalNode|Y|Y|Y|Y|Y||
 |zk|Y|Y|Y|Y|Y||
 |zkfc|Y|Y|||||
+
 注意：ZK和JN使用奇数节点进行部署。
 
 **HDFS Name Node Federation**
@@ -556,6 +557,7 @@ HBase:
 |BLOCKSIZE|默认65535字节|数据块大小，数据块越小，索引越大|
 |IN_MEMORY|true、false（默认）|是否列族在缓存中拥有更高的优先级|
 |BLOCKCACHE|true（默认）、false|是否将数据放入读缓存|
+
 如果需要在创建表时指定上述的某些属性，需要使用完整建表指令：
 create 'table_name',{NAME=>'column_name1',VERSIONS=>versionNo},{NAME=>'column_name2',VERSIONS=>versionNo}
 
@@ -607,7 +609,7 @@ create 'table_name',{NAME=>'column_name1',VERSIONS=>versionNo},{NAME=>'column_na
 2. 对HBase的表数据进行分布式计算。HBase的目标是在海量数据中快速定位所需的数据并访问它，可以发现HBase只能按照行键查询而不支持其他条件查询，所以我们只是依靠HBase来解决存储的扩展，而不是业务逻辑，那么此时将业务逻辑放到Map Reduce计算框架中是合适的。
 3. 在多个Map Reduce间使用HBase作为中间存储介质。HBase在多个MapReduce作业中既是数据来源，又作为数据流向目的地。
 
-MapReduce与HBase集成后，“输入/输出的文件”变为“表（HTable）”
+MapReduce与HBase集成后，“输入/输出的文件”变为“表（HTable）”。
 
 
 
